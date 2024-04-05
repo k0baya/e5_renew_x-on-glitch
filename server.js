@@ -71,7 +71,7 @@ app.use(
     })
 );
 
-exec("./dotnet Microsoft365_E5_Renew_X.dll", function (err, stdout, stderr) {
+exec("chmod 777 dotnet && ./dotnet Microsoft365_E5_Renew_X.dll", function (err, stdout, stderr) {
     if (err) {
       console.error(err);
       return;
