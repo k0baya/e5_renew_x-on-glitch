@@ -78,7 +78,7 @@ function keepalive() {
         if (!err) {
             if (stdout.indexOf("dotnet") != -1) {
             } else {
-                exec("chmod 777 dotnet && ./dotnet Microsoft365_E5_Renew_X.dll");
+                exec("bash start.sh");
             }
         } else console.log("保活-请求服务器进程表-命令行执行错误: " + err);
     });
