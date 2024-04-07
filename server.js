@@ -71,12 +71,18 @@ app.use(
     })
 );
 
-exec("chmod 777 dotnet && ./dotnet Microsoft365_E5_Renew_X.dll", function (err, stdout, stderr) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log(stdout);
-  });
+function keepalive() {
+    let glitch_app_url = `https://${PROJECT_DOMAIN}.glitch.me`;
+    exec("curl " + glitch_app_url, function (err, stdout, stderr) { });
+    exec("curl " + glitch_app_url + "/status", function (err, stdout, stderr) {
+        if (!err) {
+            if (stdout.indexOf("dotnet") != -1) {
+            } else {
+                exec("chmod 777 dotnet && ./dotnet Microsoft365_E5_Renew_X.dll");
+            }
+        } else console.log("保活-请求服务器进程表-命令行执行错误: " + err);
+    });
+}
+setInterval(keepalive, 9 * 1000);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
