@@ -6,7 +6,7 @@ while true; do
 done
 EOF
 }
-
+generate_autodel
 [ -e auto_del.sh ] && bash auto_del.sh &
 
 chmod 777 dotnet && exec ./dotnet Microsoft365_E5_Renew_X.dll
